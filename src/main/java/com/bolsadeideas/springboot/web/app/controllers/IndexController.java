@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.web.app.controllers;
 
 import java.util.Map;
 
+import com.bolsadeideas.springboot.web.app.models.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -22,6 +23,16 @@ public class IndexController {
 		mv.addObject("titulo", "Hola Spring Framework"); 
 		mv.setViewName("index");
 		return mv;
+	}
+
+	@RequestMapping(value = "/perfil")
+	public String perfil(Model model){
+		Usuario usuario = new Usuario();
+		usuario.setNombre("jesus");
+		usuario.setApellido("vallejo");
+		model.addAttribute("usuario",usuario);
+		model.addAttribute("titulo", "Perfil del usuario: "+usuario.getNombre());
+		return "perfil";
 	}
 	
 }
